@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard</title>
+    <script>
+        function startup() {
+            var socketExample = new WebSocket("ws://localhost:3001");
+            socketExample.onopen = function (event) {   //send message to server
+                socketExample.send("Something to send");
+            };
+            socketExample.onmessage = function (event) {   //receive message from server
+                console.log(event.data);
+                document.getElementById("demo").innerHTML = event.data; } }
+    </script>
+</head>
+<body onload="startup();">
+<div id="demo">
+    Trial
+</div>
+</body>
+</html>

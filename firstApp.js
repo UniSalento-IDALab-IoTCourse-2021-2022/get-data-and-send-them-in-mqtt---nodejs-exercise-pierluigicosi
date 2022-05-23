@@ -1,9 +1,10 @@
-const http = require('http')
+require('http');
 const mqtt=require('mqtt');
 
-var client = mqtt.connect("mqtt://mqtt.eclipseprojects.io",{clientId:"mqttjs01"}); client.on("connect",function(){
+var client = mqtt.connect("mqtt://mqtt.eclipseprojects.io",{clientId:"piero"});
+    client.on("connect",function(){
     console.log("connected"); });
-client.on("error",function(error){ console.log("Can't connect"+error);
+    client.on("error",function(error){ console.log("Can't connect"+error);
 });
 
 // Automatically update sensor value every 2 seconds
@@ -13,7 +14,7 @@ setInterval(function() {
     const data = JSON.stringify({
         'sensor': 'ID1',
         'timestamp': 12345678,
-        'temperature': 32
+        'temperature': Math.random() * (35 - 30) + 30
     })
 
     const options = {
